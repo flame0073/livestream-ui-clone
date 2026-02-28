@@ -1,79 +1,448 @@
 {
   "categories": [
-    "All", "Live", "News", "Sports", "Entertainment", "Music", "Gaming", "Education", "Technology", "Cooking", "Travel", "Science", "Comedy", "Documentary"
+    "All", "Local", "News", "Sports", "Movies", "Kids", "Documentary", "Entertainment", "Music", "Anime", "Lifestyle", "International", "Education", "Technology", "Travel"
   ],
   "channels": [
     {
-      "name": "Sky News",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/7/74/Sky_News_logo.svg/1200px-Sky_News_logo.svg.png",
+      "name": "A2Z",
+      "logo": "https://i.imgur.com/pRwyOMP.png",
+      "category": "Local",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/cg_a2z/default/index.mpd",
+      "clearKey": {
+        "f703e4c8ec9041eeb5028ab4248fa094": "c22f2162e176eee6273a5d0b68d19530"
+      },
+      "subscribers": "2.1M",
+      "views": "14K watching"
+    },
+    {
+      "name": "ABC Australia",
+      "logo": "https://i.imgur.com/480rU5C.png",
       "category": "News",
-      "type": "hls",
-      "url": "https://linear-351.frequency.stream/dist/localnow/351/hls/master/playlist.m3u8",
-      "subscribers": "12.4M",
-      "views": "1.2K watching"
+      "type": "mpd",
+      "url": "https://qp-pldt-live-grp-10-prod.akamaized.net/out/u/dr_abc_aus.mpd",
+      "clearKey": {
+        "389497f9f8584a57b234e27e430e04b7": "3b85594c7f88604adf004e45c03511c0"
+      },
+      "subscribers": "1.5M",
+      "views": "3.2K watching"
     },
     {
-      "name": "DW News",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Deutsche_Welle_Logo.svg/1200px-Deutsche_Welle_Logo.svg.png",
+      "name": "Animal Planet",
+      "logo": "https://api.discovery.com/v1/images/5bc91c366b66d1494068339e?aspectRatio=1x1&width=192&key=3020a40c2356a645b4b4",
+      "category": "Documentary",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-grp-02-prod.akamaized.net/out/u/cg_animal_planet_sd.mpd",
+      "clearKey": {
+        "436b69f987924fcbbc06d40a69c2799a": "c63d5b0d7e52335b61aeba4f6537d54d"
+      },
+      "subscribers": "5.6M",
+      "views": "8.1K watching"
+    },
+    {
+      "name": "Animax",
+      "logo": "https://i.imgur.com/VLlyHhT.png",
+      "category": "Anime",
+      "type": "mpd",
+      "url": "https://animax.b-cdn.net/mirror/animax/static.mpd",
+      "clearKey": {
+        "8421c9bc0b5241e59fe4377405a5305e": "a8570f08dd26e5210041d85d7a84d6f4"
+      },
+      "subscribers": "3.8M",
+      "views": "12K watching"
+    },
+    {
+      "name": "Anime X Hidive",
+      "logo": "https://www.tablotv.com/wp-content/uploads/2023/12/AnimeXHIDIVE_official-768x499.png",
+      "category": "Anime",
+      "type": "hls",
+      "url": "https://amc-anime-x-hidive-1-us.tablo.wurl.tv/playlist.m3u8",
+      "subscribers": "1.2M",
+      "views": "4.5K watching"
+    },
+    {
+      "name": "ANC",
+      "logo": "https://vignette.wikia.nocookie.net/russel/images/5/52/ANC_HD_Logo_2016.png/revision/latest?cb=20180404015018",
       "category": "News",
-      "type": "hls",
-      "url": "https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/index.m3u8",
-      "subscribers": "4.1M",
-      "views": "856 watching"
-    },
-    {
-      "name": "France 24",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/France_24_logo.svg/1200px-France_24_logo.svg.png",
-      "category": "News",
-      "type": "hls",
-      "url": "https://stream.france24.com/live/france24_en_hls/2025/france24_en.m3u8",
-      "subscribers": "8.7M",
-      "views": "2.3K watching"
-    },
-    {
-      "name": "Lofi Girl",
-      "logo": "https://yt3.googleusercontent.com/UgT7kNsRJjm-JYXtHBCm3PYXO10Y44sMSgcx4hVSkk6kWLDP6GAiLHqBVWiUCDRUgcfJBb7sg=s176-c-k-c0x00ffffff-no-rj",
-      "category": "Music",
-      "type": "youtube",
-      "url": "jfKfPfyJRdk",
-      "subscribers": "14.2M",
-      "views": "38K watching"
-    },
-    {
-      "name": "NASA TV",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/1200px-NASA_logo.svg.png",
-      "category": "Science",
-      "type": "hls",
-      "url": "https://ntv1.akamaized.net/hls/live/2014075/NASA-NTV1-HLS/master.m3u8",
-      "subscribers": "10.8M",
-      "views": "5.4K watching"
+      "type": "mpd",
+      "url": "https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg01006-abs-cbn-anc-global-dash-abscbnono/index.mpd",
+      "clearKey": {
+        "4bbdc78024a54662854b412d01fafa16": "6039ec9b213aca913821677a28bd78ae"
+      },
+      "subscribers": "6.2M",
+      "views": "21K watching"
     },
     {
       "name": "Al Jazeera",
-      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Aljazeera.svg/1200px-Aljazeera.svg.png",
+      "logo": "https://th.bing.com/th/id/OIP.EeF7fuBh0ASAdfYFigegbgHaE8?rs=1&pid=ImgDetMain",
       "category": "News",
       "type": "hls",
-      "url": "https://live-hls-web-aje.getaj.net/AJE/01.m3u8",
+      "url": "https://live-hls-web-aje.getaj.net/AJE/index.m3u8",
       "subscribers": "11.2M",
-      "views": "4.1K watching"
+      "views": "45K watching"
     },
     {
-      "name": "Bloomberg TV",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Bloomberg_logo.svg/1200px-Bloomberg_logo.svg.png",
+      "name": "AXN",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/d/d0/AXN_Logo_2015.png",
+      "category": "Entertainment",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/cg_axn_sd/default/index.mpd",
+      "clearKey": {
+        "fd5d928f5d974ca4983f6e9295dfe410": "3aaa001ddc142fedbb9d5557be43792f"
+      },
+      "subscribers": "2.4M",
+      "views": "6K watching"
+    },
+    {
+      "name": "BBC Earth",
+      "logo": "https://i.imgur.com/cvYi2Io.png",
+      "category": "Documentary",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-01-prod.akamaized.net/bpk-tv/cg_bbcearth_hd1/default/index.mpd",
+      "clearKey": {
+        "34ce95b60c424e169619816c5181aded": "0e2a2117d705613542618f58bf26fc8e"
+      },
+      "subscribers": "8.9M",
+      "views": "11K watching"
+    },
+    {
+      "name": "BBCWORLD News",
+      "logo": "https://th.bing.com/th/id/OIP.Dt6zbSEb8BztEMb1C93QHQHaHk?rs=1&pid=ImgDetMain",
+      "category": "News",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-01-prod.akamaized.net/bpk-tv/bbcworld_news_sd/default/index.mpd",
+      "clearKey": {
+        "f59650be475e4c34a844d4e2062f71f3": "119639e849ddee96c4cec2f2b6b09b40"
+      },
+      "subscribers": "14.5M",
+      "views": "52K watching"
+    },
+    {
+      "name": "Billiard TV",
+      "logo": "https://th.bing.com/th/id/OIP.JKBoiu3cX_PVMSwZLYFxCAHaHa?rs=1&pid=ImgDetMain",
+      "category": "Sports",
+      "type": "hls",
+      "url": "https://1b29dd71cd5e4191a3eb26afff631ed3.mediatailor.us-west-2.amazonaws.com/v1/master/9d062541f2ff39b5c0f48b743c6411d25f62fc25/SportsTribal-BilliardTV/BILLIARDTV_SCTE.m3u8",
+      "subscribers": "850K",
+      "views": "2.1K watching"
+    },
+    {
+      "name": "Bilyonaryo",
+      "logo": "https://th.bing.com/th/id/OIP.O2OG_59US0j-zqWyZwqhXAHaCH?rs=1&pid=ImgDetMain",
+      "category": "News",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/bilyonaryoch/default/index.mpd",
+      "clearKey": {
+        "227ffaf09bec4a889e0e0988704d52a2": "b2d0dce5c486891997c1c92ddaca2cd2"
+      },
+      "subscribers": "500K",
+      "views": "3K watching"
+    },
+    {
+      "name": "Bloomberg",
+      "logo": "https://th.bing.com/th/id/OIP.ayx_C9FL75IKjIl408wLagHaFj?rs=1&pid=ImgDetMain",
+      "category": "News",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/bloomberg_sd/default/index.mpd",
+      "clearKey": {
+        "ef7d9dcfb99b406cb79fb9f675cba426": "b24094f6ca136af25600e44df5987af4"
+      },
+      "subscribers": "3.5M",
+      "views": "8.5K watching"
+    },
+    {
+      "name": "BUKO",
+      "logo": "https://th.bing.com/th/id/OIP.ph_7Uv-meouzQBVcfuuQQwHaIL?rs=1&pid=ImgDetMain",
+      "category": "Entertainment",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-01-prod.akamaized.net/bpk-tv/cg_buko_sd/default/index.mpd",
+      "clearKey": {
+        "d273c085f2ab4a248e7bfc375229007d": "7932354c3a84f7fc1b80efa6bcea0615"
+      },
+      "subscribers": "920K",
+      "views": "5.4K watching"
+    },
+    {
+      "name": "Cartoon Network",
+      "logo": "https://i.imgur.com/9PLlajp.png",
+      "category": "Kids",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/cartoonnetworkhd/default/index.mpd",
+      "clearKey": {
+        "a2d1f552ff9541558b3296b5a932136b": "cdd48fa884dc0c3a3f85aeebca13d444"
+      },
+      "subscribers": "35M",
+      "views": "42K watching"
+    },
+    {
+      "name": "Cartoon Classics",
+      "logo": "https://tse1.mm.bing.net/th/id/OIP.e3EnrHl_y0kw59ySjxxmQAAAAA?rs=1&pid=ImgDetMain",
+      "category": "Kids",
+      "type": "hls",
+      "url": "https://streams2.sofast.tv/v1/master/611d79b11b77e2f571934fd80ca1413453772ac7/d5543c06-5122-49a7-9662-32187f48aa2c/manifest.m3u8",
+      "subscribers": "1.8M",
+      "views": "3.3K watching"
+    },
+    {
+      "name": "Celestial Movies Pinoy",
+      "logo": "https://cms.cignal.tv/Upload/Images/Celestial-Logo-2022.jpg",
+      "category": "Movies",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-01-prod.akamaized.net/bpk-tv/celmovie_pinoy_sd/default/index.mpd",
+      "clearKey": {
+        "0f8537d8412b11edb8780242ac120002": "2ffd7230416150fd5196fd7ea71c36f3"
+      },
+      "subscribers": "2.2M",
+      "views": "9.5K watching"
+    },
+    {
+      "name": "CinemaOne",
+      "logo": "https://th.bing.com/th/id/OIP.3wplDtTyzPCr4Yoyg8t_GgHaDC?rs=1&pid=ImgDetMain",
+      "category": "Movies",
+      "type": "mpd",
+      "url": "https://d9rpesrrg1bdi.cloudfront.net/out/v1/93b9db7b231d45f28f64f29b86dc6c65/index.mpd",
+      "clearKey": {
+        "58d0e56991194043b8fb82feb4db7276": "d68f41b59649676788889e19fb10d22c"
+      },
+      "subscribers": "4.5M",
+      "views": "18K watching"
+    },
+    {
+      "name": "Cinemo",
+      "logo": "https://yt3.ggpht.com/a-/AAuE7mAK5lTlRJwr2rZLeitoTnOYkjForU2cvszswQ=s900-mo-c-c0xffffffff-rj-k-no",
+      "category": "Movies",
+      "type": "mpd",
+      "url": "https://d1bail49udbz1k.cloudfront.net/out/v1/3a895f368f4a467c9bca0962559efc19/index.mpd",
+      "clearKey": {
+        "aa8aebe35ccc4541b7ce6292efcb1bfb": "aab1df109d22fc5d7e3ec121ddf24e5f"
+      },
+      "subscribers": "3.1M",
+      "views": "12K watching"
+    },
+    {
+      "name": "Cinemax",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Cinemax_%28Yellow%29.svg/1200px-Cinemax_%28Yellow%29.svg.png",
+      "category": "Movies",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/cg_cinemax/default/index.mpd",
+      "clearKey": {
+        "b207c44332844523a3a3b0469e5652d7": "fe71aea346db08f8c6fbf0592209f955"
+      },
+      "subscribers": "1.7M",
+      "views": "6.8K watching"
+    },
+    {
+      "name": "CCTV4",
+      "logo": "https://w7.pngwing.com/pngs/976/161/png-transparent-china-central-television-cctv-4-cgtn-russian-cctv-channels-television-channel-others-miscellaneous-television-text.png",
+      "category": "International",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-01-prod.akamaized.net/bpk-tv/dr_cctv4/default/index.mpd",
+      "clearKey": {
+        "0f8541ec412b11edb8780242ac120002": "6cf16c272b7357c48cd47061799a4963"
+      },
+      "subscribers": "10.1M",
+      "views": "25K watching"
+    },
+    {
+      "name": "Channel News Asia",
+      "logo": "https://www.sopasia.com/wp-content/uploads/2014/04/logo_Channel-NewsAsia-logo.jpg",
+      "category": "News",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/channelnewsasia/default/index.mpd",
+      "clearKey": {
+        "b259df9987364dd3b778aa5d42cb9acd": "753e3dba96ab467e468269e7e33fb813"
+      },
+      "subscribers": "4.2M",
+      "views": "13K watching"
+    },
+    {
+      "name": "CNN INTERNATIONAL",
+      "logo": "https://th.bing.com/th/id/OIP.S7pJUpbQ6mU4KQeBF66nMgHaHa?rs=1&pid=ImgDetMain",
+      "category": "News",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/cg_cnnhd/default/index.mpd",
+      "clearKey": {
+        "900c43f0e02742dd854148b7a75abbec": "da315cca7f2902b4de23199718ed7e90"
+      },
+      "subscribers": "16M",
+      "views": "60K watching"
+    },
+    {
+      "name": "DZRH TV",
+      "logo": "https://th.bing.com/th/id/OIP.LA48bslLAx_sTgviWD-EKQAAAA?rs=1&pid=ImgDetMain",
       "category": "News",
       "type": "youtube",
-      "url": "dp8PhLsUcFE",
-      "subscribers": "5.9M",
-      "views": "1.8K watching"
+      "url": "https://www.youtube.com/embed/live_stream?channel=UCcTiBX8js_djhSSlmJRI99A",
+      "subscribers": "3.5M",
+      "views": "28K watching"
     },
     {
-      "name": "NHK World",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/NHK_World-Japan_logo.svg/1200px-NHK_World-Japan_logo.svg.png",
-      "category": "News",
+      "name": "DepEd Channel",
+      "logo": "https://th.bing.com/th/id/OIP.MPPdJ1ObiLG4Q6MFEDQ4pAHaEH?rs=1&pid=ImgDetMain",
+      "category": "Education",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/depedch_sd/default/index.mpd",
+      "clearKey": {
+        "0f853706412b11edb8780242ac120002": "2157d6529d80a760f60a8b5350dbc4df"
+      },
+      "subscribers": "1.1M",
+      "views": "4K watching"
+    },
+    {
+      "name": "Discovery Channel",
+      "logo": "https://th.bing.com/th/id/OIP.4ONCH8mk4foZNv6W4xM0nQHaGa?rs=1&pid=ImgDetMain",
+      "category": "Documentary",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/discovery/default/index.mpd",
+      "clearKey": {
+        "d9ac48f5131641a789328257e778ad3a": "b6e67c37239901980c6e37e0607ceee6"
+      },
+      "subscribers": "40M",
+      "views": "22K watching"
+    },
+    {
+      "name": "Disney Channel",
+      "logo": "https://th.bing.com/th/id/OIP.ry79quPYFII7hj-ZpuoDAQHaDt?rs=1&pid=ImgDetMain",
+      "category": "Kids",
+      "type": "mpd",
+      "url": "https://uselector.cdn.intigral-ott.net/DIS/DIS.isml/manifest.mpd",
+      "clearKey": {
+        "72800c62fcf2bfbedd9af27d79ed35d6": "b6ccb9facb2c1c81ebe4dfaab8a45195"
+      },
+      "subscribers": "25M",
+      "views": "35K watching"
+    },
+    {
+      "name": "ESPN",
+      "logo": "https://th.bing.com/th/id/OIP.X0rfjwnmj1p_6q6OiYJS3wHaEK?rs=1&pid=ImgDetMain",
+      "category": "Sports",
       "type": "hls",
-      "url": "https://nhkworld.webcdn.stream.ne.jp/www11/nhkworld-tv/domestic/263942/live_wa_s.m3u8",
-      "subscribers": "3.2M",
-      "views": "612 watching"
+      "url": "https://iptvproxy-five.vercel.app/api/hls?url=http://41.205.93.154/ESPN/index.m3u8",
+      "subscribers": "10.3M",
+      "views": "85K watching"
+    },
+    {
+      "name": "GMA Pinoy TV",
+      "logo": "https://th.bing.com/th/id/OIP.ntjNVRaXsZJ0vrhWBA35sQHaE7?rs=1&pid=ImgDetMain",
+      "category": "Local",
+      "type": "mpd",
+      "url": "https://cdn-uw2-prod.tsv2.amagi.tv/linear/amg01006-abs-cbn-abscbn-gma-x7-dash-abscbnono/7c693236-e0c1-40a3-8bd0-bb25e43f5bfc/index.mpd",
+      "clearKey": {
+        "c95ed4c44b0b4f7fa1c6ebbbbaab21a1": "47635b8e885e19f2ccbdff078c207058"
+      },
+      "subscribers": "8.5M",
+      "views": "40K watching"
+    },
+    {
+      "name": "GMA (Youtube Stream)",
+      "logo": "https://aphrodite.gmanetwork.com/entertainment/shows/images/1200_675_TVShow_MainTCARD_-20220622115633.png",
+      "category": "Local",
+      "type": "youtube",
+      "url": "https://www.youtube.com/embed/live_stream?channel=UCKL5hAuzgFQsyrsQKgU0Qng",
+      "subscribers": "35M",
+      "views": "60K watching"
+    },
+    {
+      "name": "HBO HD",
+      "logo": "https://th.bing.com/th/id/OIP.lY5V2M3D9jtBFJNbOAI8swHaDt?rs=1&pid=ImgDetMain",
+      "category": "Movies",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/cg_hbohd/default/index.mpd",
+      "clearKey": {
+        "d47ebabf7a21430b83a8c4b82d9ef6b1": "54c213b2b5f885f1e0290ee4131d425b"
+      },
+      "subscribers": "12.8M",
+      "views": "25K watching"
+    },
+    {
+      "name": "History HD",
+      "logo": "https://th.bing.com/th/id/OIP.Yx9hYOFfO03taYL2CZd6FAHaE8?rs=1&pid=ImgDetMain",
+      "category": "Documentary",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-01-prod.akamaized.net/bpk-tv/dr_historyhd/default/index.mpd",
+      "clearKey": {
+        "a7724b7ca2604c33bb2e963a0319968a": "6f97e3e2eb2bade626e0281ec01d3675"
+      },
+      "subscribers": "10.4M",
+      "views": "11K watching"
+    },
+    {
+      "name": "Kapamilya Channel",
+      "logo": "https://th.bing.com/th/id/OIP.ZzYB03x8FwMJFXEoCw4BcQHaEK?rs=1&pid=ImgDetMain",
+      "category": "Local",
+      "type": "mpd",
+      "url": "https://cdn-ue1-prod.tsv2.amagi.tv/linear/amg01006-abs-cbn-kapcha-dash-abscbnono/index.mpd",
+      "clearKey": {
+        "bd17afb5dc9648a39be79ee3634dd4b8": "3ecf305d54a7729299b93a3d69c02ea5"
+      },
+      "subscribers": "45M",
+      "views": "70K watching"
+    },
+    {
+      "name": "Kapamilya Online",
+      "logo": "https://th.bing.com/th/id/OIP.WJ42CLSN52F8__yoFceMOwHaEK?rs=1&pid=ImgDetMain",
+      "category": "Local",
+      "type": "youtube",
+      "url": "https://www.youtube.com/embed/live_stream?channel=UCstEtN0pgOmCf02EdXsGChw",
+      "subscribers": "45M",
+      "views": "100K watching"
+    },
+    {
+      "name": "MTV",
+      "logo": "https://logos-world.net/wp-content/uploads/2020/09/MTV-Logo-1981-2009.png",
+      "category": "Music",
+      "type": "hls",
+      "url": "https://streamer1.nexgen.bz/MTV/index.m3u8",
+      "subscribers": "15M",
+      "views": "12K watching"
+    },
+    {
+      "name": "NBA TV Philippines",
+      "logo": "https://cms.cignal.tv/Upload/Images/NBA-TV-Philippines.jpg",
+      "category": "Sports",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/cgnl_nba/default/index.mpd",
+      "clearKey": {
+        "c5e51f41ceac48709d0bdcd9c13a4d88": "20b91609967e472c27040716ef6a8b9a"
+      },
+      "subscribers": "1.8M",
+      "views": "38K watching"
+    },
+    {
+      "name": "One Sports",
+      "logo": "https://vignette.wikia.nocookie.net/logopedia/images/5/56/TV5_One_Sports_Channel.png/revision/latest/scale-to-width-down/300?cb=20181221055916",
+      "category": "Sports",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/cg_onesports_hd/default/index.mpd",
+      "clearKey": {
+        "53c3bf2eba574f639aa21f2d4409ff11": "3de28411cf08a64ea935b9578f6d0edd"
+      },
+      "subscribers": "2.9M",
+      "views": "14K watching"
+    },
+    {
+      "name": "TV5",
+      "logo": "https://cms.cignal.tv/Upload/Thumbnails/TV5%20HD%20logo%20(1).png",
+      "category": "Local",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/tv5_hd/default1/index.mpd",
+      "clearKey": {
+        "2615129ef2c846a9bbd43a641c7303ef": "07c7f996b1734ea288641a68e1cfdc4d"
+      },
+      "subscribers": "10M",
+      "views": "30K watching"
+    },
+    {
+      "name": "Warner TV",
+      "logo": "https://th.bing.com/th/id/OIP.8xIdcYektX82pKAdaXcQEgHaHr?rs=1&pid=ImgDetMain",
+      "category": "Entertainment",
+      "type": "mpd",
+      "url": "https://qp-pldt-live-grp-11-prod.akamaized.net/out/u/dr_warnertvhd.mpd",
+      "clearKey": {
+        "4503cf86bca3494ab95a77ed913619a0": "afc9c8f627fb3fb255dee8e3b0fe1d71"
+      },
+      "subscribers": "4.2M",
+      "views": "8.5K watching"
     }
   ]
 }
