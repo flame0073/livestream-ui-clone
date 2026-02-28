@@ -28,7 +28,10 @@ const App = () => {
               path="/"
               element={<Index sidebarExpanded={sidebarExpanded} />}
             />
-            <Route path="/watch/:channelName" element={<Watch />} />
+            <Route 
+              path="/watch/:channelName" 
+              element={<Watch sidebarExpanded={sidebarExpanded} />} 
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
