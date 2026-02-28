@@ -1,6 +1,6 @@
+import React, { useState } from "react";
 import { Menu, Search, Bell, User, Mic, ArrowLeft } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 interface NavbarProps {
   onToggleSidebar: () => void;
@@ -14,11 +14,10 @@ const Navbar = ({ onToggleSidebar, searchQuery, setSearchQuery }: NavbarProps) =
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    setShowMobileSearch(false); // Isasara ang mobile search box pagka-enter
-    navigate("/"); // Ibabalik sa home para makita ang results
+    setShowMobileSearch(false);
+    navigate("/");
   };
 
-  // KUNG NAKA-MOBILE SEARCH MODE (Eksklusibo para sa maliit na screen)
   if (showMobileSearch) {
     return (
       <header className="fixed top-0 left-0 right-0 z-50 flex h-14 items-center gap-2 bg-background px-4 sm:hidden">
@@ -48,12 +47,10 @@ const Navbar = ({ onToggleSidebar, searchQuery, setSearchQuery }: NavbarProps) =
     );
   }
 
-  // DEFAULT NAVBAR (Desktop at default Mobile view)
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex h-14 items-center justify-between bg-background px-4">
       {/* Left */}
       <div className="flex shrink-0 items-center gap-4">
-        {/* Nakatago na ang hamburger menu sa mobile (hidden sm:block) */}
         <button
           onClick={onToggleSidebar}
           className="hidden shrink-0 rounded-full p-2 hover:bg-accent sm:block"
@@ -67,7 +64,6 @@ const Navbar = ({ onToggleSidebar, searchQuery, setSearchQuery }: NavbarProps) =
                 <path d="M8 5v14l11-7z" />
               </svg>
             </div>
-            {/* Tinago yung word na "LiveTube" sa sobrang liliit na screen para may space */}
             <span className="ml-1 hidden text-xl font-semibold tracking-tight sm:block">
               LiveTube
             </span>
@@ -75,7 +71,7 @@ const Navbar = ({ onToggleSidebar, searchQuery, setSearchQuery }: NavbarProps) =
         </Link>
       </div>
 
-      {/* Center - Desktop Search Bar */}
+      {/* Center */}
       <form
         onSubmit={handleSearch}
         className="mx-4 hidden max-w-2xl flex-1 items-center sm:flex"
@@ -105,7 +101,6 @@ const Navbar = ({ onToggleSidebar, searchQuery, setSearchQuery }: NavbarProps) =
 
       {/* Right */}
       <div className="flex shrink-0 items-center gap-1">
-        {/* Mobile Search Toggle Button */}
         <button 
           className="shrink-0 rounded-full p-2 hover:bg-accent sm:hidden"
           onClick={() => setShowMobileSearch(true)}
