@@ -1,0 +1,79 @@
+{
+  "categories": [
+    "All", "Live", "News", "Sports", "Entertainment", "Music", "Gaming", "Education", "Technology", "Cooking", "Travel", "Science", "Comedy", "Documentary"
+  ],
+  "channels": [
+    {
+      "name": "Sky News",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/7/74/Sky_News_logo.svg/1200px-Sky_News_logo.svg.png",
+      "category": "News",
+      "type": "hls",
+      "url": "https://linear-351.frequency.stream/dist/localnow/351/hls/master/playlist.m3u8",
+      "subscribers": "12.4M",
+      "views": "1.2K watching"
+    },
+    {
+      "name": "DW News",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Deutsche_Welle_Logo.svg/1200px-Deutsche_Welle_Logo.svg.png",
+      "category": "News",
+      "type": "hls",
+      "url": "https://dwamdstream104.akamaized.net/hls/live/2015530/dwstream104/index.m3u8",
+      "subscribers": "4.1M",
+      "views": "856 watching"
+    },
+    {
+      "name": "France 24",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/France_24_logo.svg/1200px-France_24_logo.svg.png",
+      "category": "News",
+      "type": "hls",
+      "url": "https://stream.france24.com/live/france24_en_hls/2025/france24_en.m3u8",
+      "subscribers": "8.7M",
+      "views": "2.3K watching"
+    },
+    {
+      "name": "Lofi Girl",
+      "logo": "https://yt3.googleusercontent.com/UgT7kNsRJjm-JYXtHBCm3PYXO10Y44sMSgcx4hVSkk6kWLDP6GAiLHqBVWiUCDRUgcfJBb7sg=s176-c-k-c0x00ffffff-no-rj",
+      "category": "Music",
+      "type": "youtube",
+      "url": "jfKfPfyJRdk",
+      "subscribers": "14.2M",
+      "views": "38K watching"
+    },
+    {
+      "name": "NASA TV",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/NASA_logo.svg/1200px-NASA_logo.svg.png",
+      "category": "Science",
+      "type": "hls",
+      "url": "https://ntv1.akamaized.net/hls/live/2014075/NASA-NTV1-HLS/master.m3u8",
+      "subscribers": "10.8M",
+      "views": "5.4K watching"
+    },
+    {
+      "name": "Al Jazeera",
+      "logo": "https://upload.wikimedia.org/wikipedia/en/thumb/f/f2/Aljazeera.svg/1200px-Aljazeera.svg.png",
+      "category": "News",
+      "type": "hls",
+      "url": "https://live-hls-web-aje.getaj.net/AJE/01.m3u8",
+      "subscribers": "11.2M",
+      "views": "4.1K watching"
+    },
+    {
+      "name": "Bloomberg TV",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Bloomberg_logo.svg/1200px-Bloomberg_logo.svg.png",
+      "category": "News",
+      "type": "youtube",
+      "url": "dp8PhLsUcFE",
+      "subscribers": "5.9M",
+      "views": "1.8K watching"
+    },
+    {
+      "name": "NHK World",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/NHK_World-Japan_logo.svg/1200px-NHK_World-Japan_logo.svg.png",
+      "category": "News",
+      "type": "hls",
+      "url": "https://nhkworld.webcdn.stream.ne.jp/www11/nhkworld-tv/domestic/263942/live_wa_s.m3u8",
+      "subscribers": "3.2M",
+      "views": "612 watching"
+    }
+  ]
+}

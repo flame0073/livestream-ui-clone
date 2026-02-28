@@ -47,6 +47,14 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        yt: {
+          chip: "hsl(var(--yt-spec-badge-chip))",
+          "chip-active": "hsl(var(--yt-spec-badge-chip-active))",
+          "chip-text": "hsl(var(--yt-spec-badge-chip-text))",
+          "chip-text-active": "hsl(var(--yt-spec-badge-chip-text-active))",
+          hover: "hsl(var(--yt-hover))",
+          "thumbnail-bg": "hsl(var(--yt-thumbnail-bg))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
           foreground: "hsl(var(--sidebar-foreground))",
