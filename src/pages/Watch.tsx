@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { ChevronDown } from "lucide-react";
 import data from "@/data.json";
 import VideoPlayer from "@/components/VideoPlayer";
 import ChannelInfo from "@/components/ChannelInfo";
@@ -11,6 +12,8 @@ interface WatchProps {
 
 const Watch = ({ sidebarExpanded }: WatchProps) => {
   const { channelName } = useParams<{ channelName: string }>();
+  const navigate = useNavigate();
+  
   const channel = data.channels.find(
     (ch) => ch.name === decodeURIComponent(channelName || "")
   );
@@ -24,14 +27,24 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
   }
 
   return (
-    <div className={`min-h-[100dvh] w-full overflow-x-hidden pt-14 pb-20 sm:pb-0 bg-background transition-all duration-300 ${sidebarExpanded ? 'md:pl-60' : 'md:pl-[72px]'}`}>
+    // Tinanggal natin ang pt-14 sa mobile para sumagad sa taas, pero ibinalik natin sa desktop (sm:pt-14)
+    <div className={`min-h-[100dvh] w-full overflow-x-hidden pb-20 sm:pt-14 sm:pb-0 bg-background transition-all duration-300 ${sidebarExpanded ? 'md:pl-60' : 'md:pl-[72px]'}`}>
       <div className="mx-auto flex max-w-[1800px] flex-col lg:flex-row xl:px-12">
         
         {/* Main content */}
         <div className="flex-1 min-w-0 lg:max-w-[calc(100%-360px)] xl:max-w-[calc(100%-420px)] lg:px-4 lg:py-6">
           
-          {/* Naka-sticky top-14 sa mobile, tapos static sa desktop para laging nasa ibabaw ang video */}
-          <div className="sticky top-14 z-40 w-full bg-black shadow-lg lg:static lg:z-auto lg:rounded-xl lg:bg-transparent lg:shadow-none">
+          {/* Naka-sticky top-0 na sa mobile para pinakatuktok talaga! */}
+          <div className="relative sticky top-0 z-40 w-full bg-black shadow-lg sm:top-14 lg:static lg:z-auto lg:rounded-xl lg:bg-transparent lg:shadow-none">
+            
+            {/* MINIMIZE / BACK BUTTON (Lilitaw lang sa Mobile) */}
+            <button 
+              onClick={() => navigate("/")} 
+              className="absolute left-4 top-4 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70 sm:hidden"
+            >
+              <ChevronDown className="h-6 w-6" />
+            </button>
+
             <VideoPlayer channel={channel} />
           </div>
           
