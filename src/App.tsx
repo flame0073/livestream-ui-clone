@@ -14,6 +14,7 @@ const queryClient = new QueryClient();
 
 const App = () => {
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
+  const [searchQuery, setSearchQuery] = useState(""); // <-- Bagong state para sa search
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -21,12 +22,21 @@ const App = () => {
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <Navbar onToggleSidebar={() => setSidebarExpanded((p) => !p)} />
+          <Navbar 
+            onToggleSidebar={() => setSidebarExpanded((p) => !p)} 
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+          />
           <LeftSidebar expanded={sidebarExpanded} />
           <Routes>
             <Route
               path="/"
-              element={<Index sidebarExpanded={sidebarExpanded} />}
+              element={
+                <Index 
+                  sidebarExpanded={sidebarExpanded} 
+                  searchQuery={searchQuery} 
+                />
+              }
             />
             <Route 
               path="/watch/:channelName" 
