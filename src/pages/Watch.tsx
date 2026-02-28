@@ -24,7 +24,7 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
   }
 
   return (
-    <div className={`min-h-screen pt-14 bg-background transition-all duration-300 ${sidebarExpanded ? 'md:pl-60' : 'md:pl-[72px]'}`}>
+    <div className={`min-h-screen pt-14 pb-16 sm:pb-0 bg-background transition-all duration-300 ${sidebarExpanded ? 'md:pl-60' : 'md:pl-[72px]'}`}>
       <div className="mx-auto flex max-w-[1800px] flex-col lg:flex-row xl:px-12">
         
         {/* Main content */}
