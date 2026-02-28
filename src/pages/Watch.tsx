@@ -17,14 +17,14 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
 
   if (!channel) {
     return (
-      <div className="flex min-h-screen items-center justify-center pt-14">
+      <div className="flex min-h-[100dvh] items-center justify-center pt-14">
         <p className="text-muted-foreground">Channel not found.</p>
       </div>
     );
   }
 
   return (
-    <div className={`min-h-screen pt-14 pb-16 sm:pb-0 bg-background transition-all duration-300 ${sidebarExpanded ? 'md:pl-60' : 'md:pl-[72px]'}`}>
+    <div className={`min-h-[100dvh] w-full overflow-x-hidden pt-14 pb-20 sm:pb-0 bg-background transition-all duration-300 ${sidebarExpanded ? 'md:pl-60' : 'md:pl-[72px]'}`}>
       <div className="mx-auto flex max-w-[1800px] flex-col lg:flex-row xl:px-12">
         
         {/* Main content */}
