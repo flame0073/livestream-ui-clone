@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Menu, Search, Bell, User, Mic, ArrowLeft } from "lucide-react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 interface NavbarProps {
   onToggleSidebar: () => void;
@@ -10,7 +10,11 @@ interface NavbarProps {
 
 const Navbar = ({ onToggleSidebar, searchQuery, setSearchQuery }: NavbarProps) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [showMobileSearch, setShowMobileSearch] = useState(false);
+
+  // Inaalam natin kung nasa Watch page ba ang user
+  const isWatchPage = location.pathname.includes("/watch");
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
@@ -48,7 +52,8 @@ const Navbar = ({ onToggleSidebar, searchQuery, setSearchQuery }: NavbarProps) =
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex h-14 items-center justify-between bg-background px-4">
+    // DITO YUNG MAGIC: Kung nasa Watch page, magiging 'hidden' ang header sa mobile (pero lalabas pa rin sa desktop sm:flex)
+    <header className={`fixed top-0 left-0 right-0 z-50 flex h-14 items-center justify-between bg-background px-4 ${isWatchPage ? 'hidden sm:flex' : ''}`}>
       {/* Left */}
       <div className="flex shrink-0 items-center gap-4">
         <button
