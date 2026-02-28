@@ -1,142 +1,118 @@
 import { useState } from "react";
-import { ThumbsUp, ThumbsDown, User } from "lucide-react";
+import { ChevronDown, X, MoreVertical } from "lucide-react";
 
+// Fake comments para may display
 const dummyComments = [
-  {
-    id: 1,
-    user: "Alex Rivera",
-    avatar: null,
-    text: "Stream is very smooth! Great quality 🔥",
-    time: "2 minutes ago",
-    likes: 42,
-  },
-  {
-    id: 2,
-    user: "Sarah Chen",
-    avatar: null,
-    text: "Watching live now, this is amazing content!",
-    time: "5 minutes ago",
-    likes: 18,
-  },
-  {
-    id: 3,
-    user: "Mike Johnson",
-    avatar: null,
-    text: "Best live stream on the platform 👏",
-    time: "12 minutes ago",
-    likes: 7,
-  },
-  {
-    id: 4,
-    user: "Priya Sharma",
-    avatar: null,
-    text: "Can someone share the schedule for tomorrow?",
-    time: "20 minutes ago",
-    likes: 3,
-  },
-  {
-    id: 5,
-    user: "James Lee",
-    avatar: null,
-    text: "Just tuned in. What did I miss?",
-    time: "31 minutes ago",
-    likes: 1,
-  },
+  { id: 1, user: "@JuanDelaCruz", text: "Wow, the stream is very smooth!", time: "2 mins ago", avatar: "J" },
+  { id: 2, user: "@MariaClara", text: "Watching live from Baguio City!", time: "5 mins ago", avatar: "M" },
+  { id: 3, user: "@TechGeek", text: "Sana walang buffer. Setup looks good.", time: "10 mins ago", avatar: "T" },
 ];
 
 const CommentSection = () => {
-  const [comments, setComments] = useState(dummyComments);
+  const [isMobileExpanded, setIsMobileExpanded] = useState(false);
   const [newComment, setNewComment] = useState("");
 
-  const handleSubmit = () => {
-    if (!newComment.trim()) return;
-    setComments([
-      {
-        id: Date.now(),
-        user: "You",
-        avatar: null,
-        text: newComment,
-        time: "Just now",
-        likes: 0,
-      },
-      ...comments,
-    ]);
+  const handleComment = (e: React.FormEvent) => {
+    e.preventDefault();
     setNewComment("");
   };
 
   return (
-    <div className="mt-6">
-      <h2 className="mb-5 text-base font-medium">
-        {comments.length} Comments
-      </h2>
-
-      {/* Add comment */}
-      <div className="mb-6 flex gap-3">
-        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-accent">
-          <User className="h-5 w-5" />
+    <>
+      {/* MOBILE COLLAPSED PREVIEW (Nakatago kapag malaki ang screen lg:hidden) */}
+      {!isMobileExpanded && (
+        <div 
+          onClick={() => setIsMobileExpanded(true)}
+          className="mt-4 cursor-pointer rounded-xl bg-accent p-3 hover:bg-accent/80 lg:hidden"
+        >
+          <div className="flex items-center justify-between">
+            <span className="font-semibold text-sm">
+              Comments <span className="text-muted-foreground font-normal ml-1">124</span>
+            </span>
+            <ChevronDown className="h-5 w-5" />
+          </div>
+          <div className="mt-2 flex items-center gap-2">
+            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-blue-600 text-[10px] font-bold text-white shrink-0">
+              {dummyComments[0].avatar}
+            </div>
+            <p className="text-xs text-foreground line-clamp-1">
+              <span className="font-medium text-muted-foreground mr-2">{dummyComments[0].user}</span>
+              {dummyComments[0].text}
+            </p>
+          </div>
         </div>
-        <div className="flex-1">
-          <input
-            type="text"
-            placeholder="Add a comment..."
-            value={newComment}
-            onChange={(e) => setNewComment(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && handleSubmit()}
-            className="w-full border-b border-border bg-transparent py-1 text-sm text-foreground placeholder:text-muted-foreground focus:border-foreground focus:outline-none"
-          />
-          {newComment && (
+      )}
+
+      {/* FULL COMMENT SECTION (Nakatago sa mobile kapag naka-minimize, pero laging bukas sa desktop) */}
+      <div className={`mt-4 rounded-xl lg:block ${isMobileExpanded ? "block bg-background" : "hidden"}`}>
+        
+        {/* Header with Close Button (Para lang sa mobile) */}
+        <div className="mb-4 flex items-center justify-between lg:mb-6">
+          <h3 className="text-lg font-bold">
+            Comments <span className="text-sm font-normal text-muted-foreground ml-1">124</span>
+          </h3>
+          <button 
+            onClick={() => setIsMobileExpanded(false)} 
+            className="rounded-full p-2 hover:bg-accent lg:hidden"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        {/* Input Box */}
+        <form onSubmit={handleComment} className="mb-6 flex gap-4">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-purple-600 text-white font-bold">
+            U
+          </div>
+          <div className="flex-1">
+            <input
+              type="text"
+              placeholder="Add a comment..."
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+              className="w-full border-b border-border bg-transparent pb-1 text-sm focus:border-foreground focus:outline-none"
+            />
             <div className="mt-2 flex justify-end gap-2">
-              <button
-                onClick={() => setNewComment("")}
+              <button 
+                type="button" 
                 className="rounded-full px-4 py-2 text-sm font-medium hover:bg-accent"
+                onClick={() => setNewComment("")}
               >
                 Cancel
               </button>
-              <button
-                onClick={handleSubmit}
-                className="rounded-full bg-blue-500 px-4 py-2 text-sm font-medium text-foreground hover:bg-blue-600"
+              <button 
+                type="submit" 
+                className={`rounded-full px-4 py-2 text-sm font-medium ${newComment ? 'bg-blue-600 text-white' : 'bg-accent text-muted-foreground'}`}
+                disabled={!newComment}
               >
                 Comment
               </button>
             </div>
-          )}
+          </div>
+        </form>
+
+        {/* Comment List */}
+        <div className="flex flex-col gap-4">
+          {dummyComments.map((comment) => (
+            <div key={comment.id} className="flex gap-4">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-blue-600 text-sm font-bold text-white">
+                {comment.avatar}
+              </div>
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-[13px] font-medium text-muted-foreground">{comment.user}</span>
+                  <span className="text-[12px] text-muted-foreground">{comment.time}</span>
+                </div>
+                <p className="mt-1 text-[14px]">{comment.text}</p>
+              </div>
+              <button className="h-fit rounded-full p-2 hover:bg-accent">
+                <MoreVertical className="h-4 w-4" />
+              </button>
+            </div>
+          ))}
         </div>
       </div>
-
-      {/* Comments list */}
-      <div className="space-y-4">
-        {comments.map((comment) => (
-          <div key={comment.id} className="flex gap-3">
-            <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-accent text-xs font-medium">
-              {comment.user.charAt(0)}
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-2">
-                <span className="text-[13px] font-medium">
-                  @{comment.user.replace(/\s/g, "").toLowerCase()}
-                </span>
-                <span className="text-xs text-muted-foreground">
-                  {comment.time}
-                </span>
-              </div>
-              <p className="mt-0.5 text-sm">{comment.text}</p>
-              <div className="mt-1 flex items-center gap-3">
-                <button className="flex items-center gap-1 text-muted-foreground hover:text-foreground">
-                  <ThumbsUp className="h-4 w-4" />
-                  <span className="text-xs">{comment.likes || ""}</span>
-                </button>
-                <button className="text-muted-foreground hover:text-foreground">
-                  <ThumbsDown className="h-4 w-4" />
-                </button>
-                <button className="text-xs font-medium text-muted-foreground hover:text-foreground">
-                  Reply
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
+    </>
   );
 };
 
