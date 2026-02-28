@@ -77,7 +77,7 @@ const VideoPlayer = ({ channel }: VideoPlayerProps) => {
     return (
       <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
         <ReactPlayer
-          src={`https://www.youtube.com/watch?v=${channel.url}`}
+          src={channel.url}
           playing
           controls
           width="100%"
