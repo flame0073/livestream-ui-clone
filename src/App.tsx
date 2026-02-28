@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import LeftSidebar from "@/components/LeftSidebar";
+import BottomNav from "@/components/BottomNav"; // <-- Import natin ang BottomNav
 import Index from "./pages/Index";
 import Watch from "./pages/Watch";
 import NotFound from "./pages/NotFound";
@@ -14,7 +15,7 @@ const queryClient = new QueryClient();
 
 const App = () => {
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
-  const [searchQuery, setSearchQuery] = useState(""); // <-- Bagong state para sa search
+  const [searchQuery, setSearchQuery] = useState("");
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -28,6 +29,7 @@ const App = () => {
             setSearchQuery={setSearchQuery}
           />
           <LeftSidebar expanded={sidebarExpanded} />
+          
           <Routes>
             <Route
               path="/"
@@ -44,6 +46,9 @@ const App = () => {
             />
             <Route path="*" element={<NotFound />} />
           </Routes>
+
+          {/* Idinagdag sa pinakailalim para palaging nandiyan sa mobile */}
+          <BottomNav /> 
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
