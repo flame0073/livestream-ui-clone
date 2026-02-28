@@ -32,10 +32,12 @@ const Index = ({ sidebarExpanded, searchQuery }: IndexProps) => {
         />
       </div>
 
+      {/* Nilagyan ng pb-20 para hindi matabunan ng BottomNav sa mobile */}
       <div className="px-4 pb-20 mt-4 sm:pb-8">
+        
         {/* Magpapakita ito kapag may tinype ka sa search bar */}
         {searchQuery && (
-          <p className="mb-4 text-sm text-muted-foreground font-medium">
+          <p className="mb-4 text-sm font-medium text-muted-foreground">
             Search results for "{searchQuery}"
           </p>
         )}
