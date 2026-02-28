@@ -32,7 +32,7 @@ const Index = ({ sidebarExpanded, searchQuery }: IndexProps) => {
         />
       </div>
 
-      <div className="px-4 pb-8 mt-4">
+      <div className="px-4 pb-20 mt-4 sm:pb-8">
         {/* Magpapakita ito kapag may tinype ka sa search bar */}
         {searchQuery && (
           <p className="mb-4 text-sm text-muted-foreground font-medium">
