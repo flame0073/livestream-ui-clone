@@ -5,7 +5,11 @@ import ChannelInfo from "@/components/ChannelInfo";
 import CommentSection from "@/components/CommentSection";
 import UpNextSidebar from "@/components/UpNextSidebar";
 
-const Watch = () => {
+interface WatchProps {
+  sidebarExpanded: boolean;
+}
+
+const Watch = ({ sidebarExpanded }: WatchProps) => {
   const { channelName } = useParams<{ channelName: string }>();
   const channel = data.channels.find(
     (ch) => ch.name === decodeURIComponent(channelName || "")
@@ -20,29 +24,37 @@ const Watch = () => {
   }
 
   return (
-    <div className="min-h-screen pt-14">
-      <div className="mx-auto flex max-w-[1800px] flex-col gap-6 px-4 py-6 lg:flex-row">
+    <div className={`min-h-screen pt-14 bg-background transition-all duration-300 ${sidebarExpanded ? 'md:pl-60' : 'md:pl-[72px]'}`}>
+      <div className="mx-auto flex max-w-[1800px] flex-col gap-6 px-4 py-6 lg:flex-row xl:px-12">
+        
         {/* Main content */}
-        <div className="flex-1 min-w-0">
-          <VideoPlayer channel={channel} />
-          <ChannelInfo channel={channel} />
+        <div className="flex-1 min-w-0 lg:max-w-[calc(100%-360px)] xl:max-w-[calc(100%-420px)]">
+          <div className="w-full">
+            <VideoPlayer channel={channel} />
+          </div>
+          
+          <div className="mt-4">
+            <ChannelInfo channel={channel} />
+          </div>
 
           {/* Description box */}
-          <div className="mt-3 rounded-xl bg-accent p-3">
+          <div className="mt-4 rounded-xl bg-accent p-3">
             <div className="flex gap-2 text-sm">
-              <span className="font-medium">{channel.views}</span>
-              <span className="text-muted-foreground">Started streaming 2 hours ago</span>
+              <span className="font-medium">{channel.views || "10K watching"}</span>
+              <span className="text-muted-foreground">Started streaming recently</span>
             </div>
             <p className="mt-1 text-sm">
               Welcome to {channel.name} live stream. Enjoy high-quality content 24/7.
             </p>
           </div>
 
-          <CommentSection />
+          <div className="mt-6">
+            <CommentSection />
+          </div>
         </div>
 
         {/* Sidebar */}
-        <div className="w-full lg:w-[402px] flex-shrink-0">
+        <div className="w-full lg:w-[360px] xl:w-[400px] flex-shrink-0">
           <UpNextSidebar
             channels={data.channels}
             currentChannel={channel.name}
