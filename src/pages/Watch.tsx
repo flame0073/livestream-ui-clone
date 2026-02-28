@@ -24,18 +24,19 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
   }
 
   return (
-    <div className={`min-h-screen pt-14 bg-background transition-all duration-300 ${sidebarExpanded ? 'md:pl-60' : 'md:pl-[72px]'}`}>
+    {/* Nilagyan ng pb-16 sa mobile para may space para sa BottomNav */}
+    <div className={`min-h-screen pt-14 pb-16 sm:pb-0 bg-background transition-all duration-300 ${sidebarExpanded ? 'md:pl-60' : 'md:pl-[72px]'}`}>
       <div className="mx-auto flex max-w-[1800px] flex-col lg:flex-row xl:px-12">
         
         {/* Main content */}
-        <div className="flex-1 min-w-0 lg:max-w-[calc(100%-360px)] xl:max-w-[calc(100%-420px)] lg:py-6 lg:px-4">
+        <div className="flex-1 min-w-0 lg:max-w-[calc(100%-360px)] xl:max-w-[calc(100%-420px)] lg:px-4 lg:py-6">
           
-          {/* DITO YUNG FIX: Naka-sticky top-14 sa mobile, tapos static sa desktop */}
-          <div className="sticky top-14 z-40 w-full bg-black lg:static lg:z-auto lg:bg-transparent lg:rounded-xl shadow-lg lg:shadow-none">
+          {/* Naka-sticky top-14 sa mobile, tapos static sa desktop para laging nasa ibabaw ang video */}
+          <div className="sticky top-14 z-40 w-full bg-black shadow-lg lg:static lg:z-auto lg:rounded-xl lg:bg-transparent lg:shadow-none">
             <VideoPlayer channel={channel} />
           </div>
           
-          <div className="px-4 pb-20 mt-4 sm:pb-8">
+          <div className="mt-4 px-4 lg:px-0">
             <ChannelInfo channel={channel} />
 
             {/* Description box */}
@@ -53,8 +54,8 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
           </div>
         </div>
 
-        {/* Sidebar */}
-        <div className="w-full lg:w-[360px] xl:w-[400px] flex-shrink-0 px-4 py-6 lg:px-0">
+        {/* Sidebar (Up Next) */}
+        <div className="w-full shrink-0 px-4 py-6 lg:w-[360px] lg:px-0 xl:w-[400px]">
           <UpNextSidebar
             channels={data.channels}
             currentChannel={channel.name}
