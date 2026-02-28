@@ -20,9 +20,9 @@
       "logo": "https://i.imgur.com/480rU5C.png",
       "category": "News",
       "type": "mpd",
-      "url": "https://qp-pldt-live-grp-10-prod.akamaized.net/out/u/dr_abc_aus.mpd",
+      "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/abc_aus/default/index.mpd",
       "clearKey": {
-        "389497f9f8584a57b234e27e430e04b7": "3b85594c7f88604adf004e45c03511c0"
+        "d6f1a8c29b7e4d5a8f332c1e9d7b6a90": "790bd17b9e623e832003a993a2de1d87"
       },
       "subscribers": "1.5M",
       "views": "3.2K watching"
