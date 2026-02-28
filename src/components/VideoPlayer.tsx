@@ -37,13 +37,15 @@ const VideoPlayer = ({ channel }: VideoPlayerProps) => {
         }
 
         if (videoRef.current) {
-          player = new shaka.Player(videoRef.current);
+          player = new shaka.Player();
           shakaPlayerRef.current = player;
 
           player.addEventListener("error", (event: any) => {
             console.error("Shaka error:", event.detail);
             setError("Playback error. Try another channel.");
           });
+
+          await player.attach(videoRef.current);
 
           // Configure DRM clearKeys if present
           if (channel.clearKey && channel.type === "mpd") {
