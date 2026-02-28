@@ -6,9 +6,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import LeftSidebar from "@/components/LeftSidebar";
-import BottomNav from "@/components/BottomNav"; // <-- Import natin ang BottomNav
+import BottomNav from "@/components/BottomNav";
 import Index from "./pages/Index";
 import Watch from "./pages/Watch";
+import Subscriptions from "./pages/Subscriptions";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -44,10 +45,14 @@ const App = () => {
               path="/watch/:channelName" 
               element={<Watch sidebarExpanded={sidebarExpanded} />} 
             />
+            {/* Bagong Route para sa Subscriptions */}
+            <Route 
+              path="/subscriptions" 
+              element={<Subscriptions sidebarExpanded={sidebarExpanded} />} 
+            />
             <Route path="*" element={<NotFound />} />
           </Routes>
 
-          {/* Idinagdag sa pinakailalim para palaging nandiyan sa mobile */}
           <BottomNav /> 
         </BrowserRouter>
       </TooltipProvider>
