@@ -1,23 +1,24 @@
 import { Menu, Search, Bell, User, Mic } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 interface NavbarProps {
   onToggleSidebar: () => void;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
 }
 
-const Navbar = ({ onToggleSidebar }: NavbarProps) => {
-  const [searchQuery, setSearchQuery] = useState("");
+const Navbar = ({ onToggleSidebar, searchQuery, setSearchQuery }: NavbarProps) => {
   const navigate = useNavigate();
 
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder search
+    // Kapag nag-search ka habang nanonood, ibabalik ka sa Home page para makita ang results
+    navigate("/");
   };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex h-14 items-center justify-between bg-background px-4">
-      {/* Left - Added shrink-0 */}
+      {/* Left - May shrink-0 na para hindi mapitpit */}
       <div className="flex items-center gap-4 shrink-0">
         <button
           onClick={onToggleSidebar}
@@ -39,7 +40,7 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
         </Link>
       </div>
 
-      {/* Center - Search */}
+      {/* Center - Totoong gumagana na ang Search */}
       <form
         onSubmit={handleSearch}
         className="mx-4 hidden max-w-2xl flex-1 items-center sm:flex"
@@ -47,7 +48,7 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
         <div className="flex w-full">
           <input
             type="text"
-            placeholder="Search"
+            placeholder="Search channels..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="h-10 w-full rounded-l-full border border-border bg-popover px-4 text-sm text-foreground placeholder:text-muted-foreground focus:border-blue-500 focus:outline-none"
@@ -67,7 +68,7 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
         </button>
       </form>
 
-      {/* Right - Added shrink-0 */}
+      {/* Right - May shrink-0 na rin */}
       <div className="flex items-center gap-1 shrink-0">
         <button className="rounded-full p-2 hover:bg-accent sm:hidden">
           <Search className="h-5 w-5" />
