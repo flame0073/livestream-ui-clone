@@ -1,4 +1,4 @@
-import { Home, Flame, PlaySquare, Clock, ThumbsUp, ChevronDown, Music2, Gamepad2, Newspaper, Trophy } from "lucide-react";
+import { Home, Flame, PlaySquare, Clock, ThumbsUp, Music2, Gamepad2, Newspaper, Trophy } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
 interface LeftSidebarProps {
@@ -8,7 +8,7 @@ interface LeftSidebarProps {
 const mainItems = [
   { icon: Home, label: "Home", path: "/" },
   { icon: Flame, label: "Shorts", path: "#" },
-  { icon: PlaySquare, label: "Subscriptions", path: "#" },
+  { icon: PlaySquare, label: "Subscriptions", path: "/subscriptions" }, // <-- Updated path
 ];
 
 const secondaryItems = [
