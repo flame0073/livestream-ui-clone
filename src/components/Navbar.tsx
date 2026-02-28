@@ -17,8 +17,8 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex h-14 items-center justify-between bg-background px-4">
-      {/* Left */}
-      <div className="flex items-center gap-4">
+      {/* Left - Added shrink-0 */}
+      <div className="flex items-center gap-4 shrink-0">
         <button
           onClick={onToggleSidebar}
           className="rounded-full p-2 hover:bg-accent"
@@ -67,8 +67,8 @@ const Navbar = ({ onToggleSidebar }: NavbarProps) => {
         </button>
       </form>
 
-      {/* Right */}
-      <div className="flex items-center gap-1">
+      {/* Right - Added shrink-0 */}
+      <div className="flex items-center gap-1 shrink-0">
         <button className="rounded-full p-2 hover:bg-accent sm:hidden">
           <Search className="h-5 w-5" />
         </button>
