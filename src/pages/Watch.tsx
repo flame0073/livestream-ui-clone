@@ -35,7 +35,7 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
             <VideoPlayer channel={channel} />
           </div>
           
-          <div className="px-4 lg:px-0 mt-4">
+          <div className="px-4 pb-20 mt-4 sm:pb-8">
             <ChannelInfo channel={channel} />
 
             {/* Description box */}
