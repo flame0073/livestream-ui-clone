@@ -27,20 +27,21 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
   }
 
   return (
-    // Tinanggal natin ang pt-14 sa mobile para sumagad sa taas, pero ibinalik natin sa desktop (sm:pt-14)
-    <div className={`min-h-[100dvh] w-full overflow-x-hidden pb-20 sm:pt-14 sm:pb-0 bg-background transition-all duration-300 ${sidebarExpanded ? 'md:pl-60' : 'md:pl-[72px]'}`}>
+    // PANSININ: Tinanggal ko na yung 'overflow-x-hidden' dito kaya gagana na ang pagka-sticky niya!
+    // Wala na ring pt-14 kapag naka-mobile para sumagad siya sa taas.
+    <div className={`min-h-[100dvh] w-full pb-20 sm:pt-14 sm:pb-0 bg-background transition-all duration-300 ${sidebarExpanded ? 'md:pl-60' : 'md:pl-[72px]'}`}>
       <div className="mx-auto flex max-w-[1800px] flex-col lg:flex-row xl:px-12">
         
         {/* Main content */}
         <div className="flex-1 min-w-0 lg:max-w-[calc(100%-360px)] xl:max-w-[calc(100%-420px)] lg:px-4 lg:py-6">
           
-          {/* Naka-sticky top-0 na sa mobile para pinakatuktok talaga! */}
-          <div className="relative sticky top-0 z-40 w-full bg-black shadow-lg sm:top-14 lg:static lg:z-auto lg:rounded-xl lg:bg-transparent lg:shadow-none">
+          {/* STICKY TOP PLAYER: Naka-sticky na siya sa z-50 para siya ang hari sa screen habang nag-i-scroll ka */}
+          <div className="relative sticky top-0 z-50 w-full bg-black shadow-lg sm:top-14 lg:static lg:z-auto lg:rounded-xl lg:bg-transparent lg:shadow-none">
             
             {/* MINIMIZE / BACK BUTTON (Lilitaw lang sa Mobile) */}
             <button 
               onClick={() => navigate("/")} 
-              className="absolute left-4 top-4 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70 sm:hidden"
+              className="absolute left-4 top-4 z-[60] flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70 sm:hidden"
             >
               <ChevronDown className="h-6 w-6" />
             </button>
