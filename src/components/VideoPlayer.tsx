@@ -13,7 +13,7 @@ const VideoPlayer = ({ channel }: VideoPlayerProps) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (channel.type !== "m3u8" && channel.type !== "mpd") return;
+    if (channel.type !== "hls" && channel.type !== "mpd") return;
 
     // FIX 1: I-reset ang error tuwing naglilipat ng channel
     setError(null);
@@ -32,12 +32,10 @@ const VideoPlayer = ({ channel }: VideoPlayerProps) => {
       };
       ui.configure(config);
 
-      if (channel.drm && channel.drm.keyId && channel.drm.key) {
+      if (channel.clearKey) {
         player.configure({
           drm: {
-            clearKeys: {
-              [channel.drm.keyId]: channel.drm.key,
-            },
+            clearKeys: channel.clearKey,
           },
         });
       }
