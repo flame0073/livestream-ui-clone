@@ -1,94 +1,78 @@
 import { useEffect, useRef, useState } from "react";
-import shaka from "shaka-player";
 import ReactPlayer from "react-player";
-
-interface Channel {
-  name: string;
-  logo: string;
-  category: string;
-  type: string;
-  url: string;
-  subscribers: string;
-  views: string;
-  clearKey?: { [key: string]: string };
-}
+import shaka from "shaka-player/dist/shaka-player.ui.js";
+import "shaka-player/dist/controls.css";
 
 interface VideoPlayerProps {
-  channel: Channel;
+  channel: any;
 }
 
 const VideoPlayer = ({ channel }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const shakaPlayerRef = useRef<shaka.Player | null>(null);
+  const videoContainerRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (channel.type === "youtube") return;
+    if (channel.type !== "m3u8" && channel.type !== "mpd") return;
 
-    let player: shaka.Player | null = null;
+    const initPlayer = async () => {
+      if (!videoRef.current || !videoContainerRef.current) return;
 
-    const initShaka = async () => {
+      const player = new shaka.Player(videoRef.current);
+      const ui = new shaka.ui.Overlay(player, videoContainerRef.current, videoRef.current);
+      
+      const config = {
+         controlPanelElements: ['play_pause', 'time_and_duration', 'spacer', 'mute', 'volume', 'fullscreen', 'overflow_menu']
+      };
+      ui.configure(config);
+
+      if (channel.drm) {
+        player.configure({
+          drm: {
+            clearKeys: {
+              [channel.drm.keyId]: channel.drm.key,
+            },
+          },
+        });
+      }
+
       try {
-        shaka.polyfill.installAll();
-
-        if (!shaka.Player.isBrowserSupported()) {
-          setError("Browser not supported for this stream.");
-          return;
-        }
-
-        if (videoRef.current) {
-          player = new shaka.Player();
-          shakaPlayerRef.current = player;
-
-          player.addEventListener("error", (event: any) => {
-            console.error("Shaka error:", event.detail);
-            setError("Playback error. Try another channel.");
-          });
-
-          await player.attach(videoRef.current);
-
-          // Configure DRM clearKeys if present
-          if (channel.clearKey && channel.type === "mpd") {
-            player.configure({
-              drm: {
-                clearKeys: channel.clearKey,
-              },
-            });
-          }
-
-          await player.load(channel.url);
-        }
-      } catch (err) {
-        console.error("Failed to load stream:", err);
-        setError("Failed to load stream.");
+        await player.load(channel.url);
+      } catch (e: any) {
+        console.error("Error loading video", e);
+        setError("Failed to load stream. It might be offline.");
       }
     };
 
-    initShaka();
+    shaka.polyfill.installAll();
+    if (shaka.Player.isBrowserSupported()) {
+      initPlayer();
+    } else {
+      setError("Browser not supported for this video.");
+    }
 
     return () => {
-      if (player) {
-        player.destroy();
-      }
+      // Cleanup
     };
   }, [channel]);
 
   if (channel.type === "youtube") {
     return (
-      <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
+      <div className="relative w-full aspect-video bg-black overflow-hidden sm:rounded-xl">
         <ReactPlayer
           src={channel.url}
           playing
           controls
           width="100%"
           height="100%"
+          style={{ position: 'absolute', top: 0, left: 0 }}
         />
       </div>
     );
   }
 
   return (
-    <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
+    <div ref={videoContainerRef} className="relative w-full aspect-video bg-black overflow-hidden sm:rounded-xl m-0 p-0">
       {error ? (
         <div className="flex h-full items-center justify-center text-muted-foreground">
           <p>{error}</p>
@@ -97,9 +81,7 @@ const VideoPlayer = ({ channel }: VideoPlayerProps) => {
         <video
           ref={videoRef}
           autoPlay
-          controls
-          className="h-full w-full"
-          style={{ backgroundColor: "black" }}
+          className="h-full w-full object-contain"
         />
       )}
     </div>
