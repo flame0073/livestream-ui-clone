@@ -73,7 +73,7 @@ const VideoPlayer = ({ channel }: VideoPlayerProps) => {
     return (
       <div className="relative w-full aspect-video bg-black overflow-hidden sm:rounded-xl">
         <iframe
-          src={`${channel.url}?autoplay=1&mute=0`}
+          src={`${channel.url}${channel.url.includes('?') ? '&' : '?'}autoplay=1&mute=0`}
           className="absolute inset-0 w-full h-full"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
