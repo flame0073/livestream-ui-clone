@@ -72,13 +72,12 @@ const VideoPlayer = ({ channel }: VideoPlayerProps) => {
   if (channel.type === "youtube") {
     return (
       <div className="relative w-full aspect-video bg-black overflow-hidden sm:rounded-xl">
-        <ReactPlayer
-          src={channel.url}
-          playing
-          controls
-          width="100%"
-          height="100%"
-          style={{ position: 'absolute', top: 0, left: 0 }}
+        <iframe
+          src={`${channel.url}?autoplay=1&mute=0`}
+          className="absolute inset-0 w-full h-full"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          frameBorder="0"
         />
       </div>
     );
