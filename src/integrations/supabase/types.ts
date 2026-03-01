@@ -14,7 +14,48 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      channels: {
+        Row: {
+          category: string
+          clear_key: Json | null
+          created_at: string
+          id: string
+          logo: string
+          name: string
+          subscribers: string | null
+          type: string
+          updated_at: string
+          url: string
+          views: string | null
+        }
+        Insert: {
+          category?: string
+          clear_key?: Json | null
+          created_at?: string
+          id?: string
+          logo?: string
+          name: string
+          subscribers?: string | null
+          type?: string
+          updated_at?: string
+          url: string
+          views?: string | null
+        }
+        Update: {
+          category?: string
+          clear_key?: Json | null
+          created_at?: string
+          id?: string
+          logo?: string
+          name?: string
+          subscribers?: string | null
+          type?: string
+          updated_at?: string
+          url?: string
+          views?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never

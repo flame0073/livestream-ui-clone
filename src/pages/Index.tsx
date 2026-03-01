@@ -1,5 +1,5 @@
 import { useState } from "react";
-import data from "@/data.json";
+import { useChannels } from "@/hooks/useChannels";
 import CategoryBar from "@/components/CategoryBar";
 import ChannelCard from "@/components/ChannelCard";
 
@@ -10,9 +10,9 @@ interface IndexProps {
 
 const Index = ({ sidebarExpanded, searchQuery }: IndexProps) => {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const { channels, categories } = useChannels();
 
-  // Filter channels based on BOTH category AND search query
-  const filteredChannels = data.channels.filter((ch) => {
+  const filteredChannels = channels.filter((ch) => {
     const matchesCategory = selectedCategory === "All" || ch.category === selectedCategory;
     const matchesSearch = ch.name.toLowerCase().includes(searchQuery.toLowerCase());
     return matchesCategory && matchesSearch;
@@ -26,16 +26,13 @@ const Index = ({ sidebarExpanded, searchQuery }: IndexProps) => {
     >
       <div className="sticky top-14 z-30 bg-background px-4">
         <CategoryBar
-          categories={data.categories}
+          categories={categories}
           selected={selectedCategory}
           onSelect={setSelectedCategory}
         />
       </div>
 
-      {/* Nilagyan ng pb-20 para hindi matabunan ng BottomNav sa mobile */}
       <div className="px-4 pb-20 mt-4 sm:pb-8">
-        
-        {/* Magpapakita ito kapag may tinype ka sa search bar */}
         {searchQuery && (
           <p className="mb-4 text-sm font-medium text-muted-foreground">
             Search results for "{searchQuery}"
@@ -48,7 +45,6 @@ const Index = ({ sidebarExpanded, searchQuery }: IndexProps) => {
           ))}
         </div>
 
-        {/* Magbabago ang empty state message kapag walang nahanap */}
         {filteredChannels.length === 0 && (
           <div className="flex h-64 flex-col items-center justify-center gap-2">
             <p className="text-lg font-medium">No channels found</p>

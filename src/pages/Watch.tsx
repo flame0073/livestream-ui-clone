@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
-import data from "@/data.json";
+import { useChannels } from "@/hooks/useChannels";
 import VideoPlayer from "@/components/VideoPlayer";
 import ChannelInfo from "@/components/ChannelInfo";
 import CommentSection from "@/components/CommentSection";
@@ -13,8 +13,9 @@ interface WatchProps {
 const Watch = ({ sidebarExpanded }: WatchProps) => {
   const { channelName } = useParams<{ channelName: string }>();
   const navigate = useNavigate();
+  const { channels } = useChannels();
   
-  const channel = data.channels.find(
+  const channel = channels.find(
     (ch) => ch.name === decodeURIComponent(channelName || "")
   );
 
@@ -29,31 +30,21 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
   return (
     <div className={`min-h-[100dvh] w-full pb-20 sm:pt-14 sm:pb-0 bg-background transition-all duration-300 touch-manipulation ${sidebarExpanded ? 'md:pl-60' : 'md:pl-[72px]'}`}>
       <div className="mx-auto flex max-w-[1800px] flex-col lg:flex-row xl:px-12">
-        
-        {/* Main content - Tinanggal natin ang padding sa mobile para sumagad ang video */}
         <div className="flex-1 min-w-0 px-0 lg:max-w-[calc(100%-360px)] xl:max-w-[calc(100%-420px)] lg:px-4 lg:py-6">
-          
-          {/* FIX: Gumamit ng 'inset-x-0 w-full' para pilitin sumagad sa magkabilang gilid ng screen */}
           <div className="fixed inset-x-0 top-0 z-50 w-full bg-black sm:sticky sm:top-14 lg:static lg:z-auto lg:rounded-xl lg:bg-transparent">
-            
-            {/* MINIMIZE BUTTON */}
             <button 
               onClick={() => navigate("/")} 
               className="absolute left-4 top-4 z-[60] flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70 sm:hidden"
             >
               <ChevronDown className="h-6 w-6" />
             </button>
-
             <VideoPlayer channel={channel} />
           </div>
           
-          {/* SPACER para sa fixed video */}
           <div className="pt-[56.25vw] sm:pt-0"></div>
 
-          {/* Dito natin binalik yung margin at padding para sa Channel Info pababa */}
           <div className="mt-4 px-4 lg:px-0">
             <ChannelInfo channel={channel} />
-
             <div className="mt-4 rounded-xl bg-accent p-3">
               <div className="flex gap-2 text-sm">
                 <span className="font-medium">{channel.views || "10K watching"}</span>
@@ -63,15 +54,13 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
                 Welcome to {channel.name} live stream. Enjoy high-quality content 24/7.
               </p>
             </div>
-
             <CommentSection />
           </div>
         </div>
 
-        {/* Sidebar (Up Next) */}
         <div className="w-full shrink-0 px-4 py-6 lg:w-[360px] lg:px-0 xl:w-[400px]">
           <UpNextSidebar
-            channels={data.channels}
+            channels={channels}
             currentChannel={channel.name}
           />
         </div>

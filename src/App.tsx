@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import Watch from "./pages/Watch";
 import Subscriptions from "./pages/Subscriptions";
 import NotFound from "./pages/NotFound";
+import Admin from "./pages/Admin";
 
 const queryClient = new QueryClient();
 
@@ -45,10 +46,13 @@ const App = () => {
               path="/watch/:channelName" 
               element={<Watch sidebarExpanded={sidebarExpanded} />} 
             />
-            {/* Bagong Route para sa Subscriptions */}
             <Route 
               path="/subscriptions" 
               element={<Subscriptions sidebarExpanded={sidebarExpanded} />} 
+            />
+            <Route 
+              path="/admin" 
+              element={<Admin sidebarExpanded={sidebarExpanded} />} 
             />
             <Route path="*" element={<NotFound />} />
           </Routes>
