@@ -12,38 +12,60 @@ const VideoPlayer = ({ channel }: VideoPlayerProps) => {
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // Gagamitin natin ang useRef para i-store ang player at hindi na kailangang i-recreate palagi
+  const playerRef = useRef<any>(null);
+  const uiRef = useRef<any>(null);
+
+  // Clean up player kapag nag-switch sa YouTube (kasi mawawala ang <video> DOM)
+  useEffect(() => {
+    if (channel.type === "youtube") {
+      if (uiRef.current) {
+        uiRef.current.destroy();
+        uiRef.current = null;
+      }
+      if (playerRef.current) {
+        playerRef.current.destroy();
+        playerRef.current = null;
+      }
+    }
+  }, [channel.type]);
+
+  // Main logic para i-load o i-update ang Shaka Player
   useEffect(() => {
     if (channel.type !== "hls" && channel.type !== "mpd") return;
-
-    // FIX 1: I-reset ang error tuwing naglilipat ng channel
     setError(null);
 
-    let player: any = null;
-    let ui: any = null;
-
-    const initPlayer = async () => {
+    const loadStream = async () => {
       if (!videoRef.current || !videoContainerRef.current) return;
 
-      player = new shaka.Player(videoRef.current);
-      ui = new shaka.ui.Overlay(player, videoContainerRef.current, videoRef.current);
-      
-      const config = {
-         controlPanelElements: ['play_pause', 'time_and_duration', 'spacer', 'mute', 'volume', 'fullscreen', 'overflow_menu']
-      };
-      ui.configure(config);
-
-      if (channel.clearKey) {
-        player.configure({
-          drm: {
-            clearKeys: channel.clearKey,
-          },
+      // Kung walang existing player (first load o galing sa YouTube), gagawa tayo ng bago
+      if (!playerRef.current) {
+        shaka.polyfill.installAll();
+        if (!shaka.Player.isBrowserSupported()) {
+          setError("Browser not supported for this video.");
+          return;
+        }
+        playerRef.current = new shaka.Player(videoRef.current);
+        uiRef.current = new shaka.ui.Overlay(playerRef.current, videoContainerRef.current, videoRef.current);
+        uiRef.current.configure({
+          controlPanelElements: ['play_pause', 'time_and_duration', 'spacer', 'mute', 'volume', 'fullscreen', 'overflow_menu']
         });
       }
 
+      // Dahil napanigurado nating may player instance na, i-load na natin yung mismong URL at DRM
       try {
-        await player.load(channel.url);
+        if (channel.clearKey) {
+          playerRef.current.configure({
+            drm: { clearKeys: channel.clearKey },
+          });
+        } else {
+          playerRef.current.configure({
+            drm: { clearKeys: {} }, // I-reset ang DRM configuration kung walang clearKey
+          });
+        }
+        await playerRef.current.load(channel.url);
       } catch (e: any) {
-        // FIX 2: Huwag pansinin ang "Load Interrupted" error (nangyayari ito dahil sa React Strict Mode double-render)
+        // Safe itong balewalain dahil ibig sabihin lang nito ay mabilis naglipat ng channel ang user
         if (e.code !== shaka.util.Error.Code.LOAD_INTERRUPTED) {
           console.error("Error loading video", e);
           setError("Failed to load stream. It might be offline.");
@@ -51,23 +73,18 @@ const VideoPlayer = ({ channel }: VideoPlayerProps) => {
       }
     };
 
-    shaka.polyfill.installAll();
-    if (shaka.Player.isBrowserSupported()) {
-      initPlayer();
-    } else {
-      setError("Browser not supported for this video.");
-    }
-
-    // FIX 3: Proper Cleanup. Kailangang sirain ang lumang player bago gumawa ng bago.
-    return () => {
-      if (ui) {
-        ui.destroy();
-      }
-      if (player) {
-        player.destroy();
-      }
-    };
+    loadStream();
+    
+    // Wala nang player.destroy() dito para hindi masira ang player paglipat ng channel!
   }, [channel]);
+
+  // Ito ang totoong cleanup: tatakbo lang kapag isinara mo na ang buong Watch page
+  useEffect(() => {
+    return () => {
+      if (uiRef.current) uiRef.current.destroy();
+      if (playerRef.current) playerRef.current.destroy();
+    };
+  }, []);
 
   if (channel.type === "youtube") {
     return (
