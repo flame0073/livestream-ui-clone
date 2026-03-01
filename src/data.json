@@ -10,7 +10,7 @@
       "type": "mpd",
       "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/cg_a2z/default/index.mpd",
       "clearKey": {
-        "f703e4c8ec9041eeb5028ab4248fa094": "c22f2162e176eee6273a5d0b68d19530"
+        "3f6d8a2c1b7e4c9f8d52a7e1b0c6f93d": "4019f9269b9054a2b9e257b114ebbaf2"
       },
       "subscribers": "2.1M",
       "views": "14K watching"
@@ -32,9 +32,9 @@
       "logo": "https://api.discovery.com/v1/images/5bc91c366b66d1494068339e?aspectRatio=1x1&width=192&key=3020a40c2356a645b4b4",
       "category": "Documentary",
       "type": "mpd",
-      "url": "https://qp-pldt-live-grp-02-prod.akamaized.net/out/u/cg_animal_planet_sd.mpd",
+      "url": "https://qp-pldt-live-bpk-01-prod.akamaized.net/bpk-tv/cg_animal_planet_sd/default/index.mpd",
       "clearKey": {
-        "436b69f987924fcbbc06d40a69c2799a": "c63d5b0d7e52335b61aeba4f6537d54d"
+        "1c9f7a6d3b2e4e5d8a61f4d0c2b9e813": "b8f52451c67a2b54f272543eef45b621"
       },
       "subscribers": "5.6M",
       "views": "8.1K watching"
@@ -44,9 +44,9 @@
       "logo": "https://i.imgur.com/VLlyHhT.png",
       "category": "Anime",
       "type": "mpd",
-      "url": "https://animax.b-cdn.net/mirror/animax/static.mpd",
+      "url": "https://qp-pldt-live-bpk-01-prod.akamaized.net/bpk-tv/cg_animax_sd_new/default/index.mpd",
       "clearKey": {
-        "8421c9bc0b5241e59fe4377405a5305e": "a8570f08dd26e5210041d85d7a84d6f4"
+        "1e7b9d2c6a4f4d8c9f33b5c1a8d7e260": "67336c0c5b24fb4b8caac248dad3c55d"
       },
       "subscribers": "3.8M",
       "views": "12K watching"
@@ -73,13 +73,16 @@
       "views": "21K watching"
     },
     {
-      "name": "Al Jazeera",
-      "logo": "https://th.bing.com/th/id/OIP.EeF7fuBh0ASAdfYFigegbgHaE8?rs=1&pid=ImgDetMain",
+     "name": "Al Jazeera",
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/d/d0/AXN_Logo_2015.png",
       "category": "News",
-      "type": "hls",
-      "url": "https://live-hls-web-aje.getaj.net/AJE/index.m3u8",
-      "subscribers": "11.2M",
-      "views": "45K watching"
+      "type": "mpd",
+      "url": "https://qp-pldt-live-bpk-01-prod.akamaized.net/bpk-tv/dr_aljazeera/default/index.mpd",
+      "clearKey": {
+        "7f3d900a04d84492b31fe9f79ac614e3": "d33ff14f50beac42969385583294b8f2"
+      },
+      "subscribers": "2.4M",
+      "views": "6K watching"
     },
     {
       "name": "AXN",
@@ -88,7 +91,7 @@
       "type": "mpd",
       "url": "https://qp-pldt-live-bpk-02-prod.akamaized.net/bpk-tv/cg_axn_sd/default/index.mpd",
       "clearKey": {
-        "fd5d928f5d974ca4983f6e9295dfe410": "3aaa001ddc142fedbb9d5557be43792f"
+        "8a6c2f1e9d7b4c5aa1f04d2b7e9c1f88": "05e6bfa4b6805c46b772f35326b26b36"
       },
       "subscribers": "2.4M",
       "views": "6K watching"
