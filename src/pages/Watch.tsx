@@ -27,17 +27,17 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
   }
 
   return (
-    // Nilagyan ng 'touch-manipulation' para maiwasan ang double-tap zoom sa cellphone
     <div className={`min-h-[100dvh] w-full pb-20 sm:pt-14 sm:pb-0 bg-background transition-all duration-300 touch-manipulation ${sidebarExpanded ? 'md:pl-60' : 'md:pl-[72px]'}`}>
       <div className="mx-auto flex max-w-[1800px] flex-col lg:flex-row xl:px-12">
         
         {/* Main content */}
+        {/* Tinanggal natin ang px-4 sa mobile para walang pumigil sa lapad ng video */}
         <div className="flex-1 min-w-0 lg:max-w-[calc(100%-360px)] xl:max-w-[calc(100%-420px)] lg:px-4 lg:py-6">
           
-          {/* FIX 1: Gumamit ng 'fixed' position sa mobile para nakapako talaga sa tuktok ng screen. 
-              Babalik siya sa normal (sm:sticky o lg:static) kapag nasa tablet/desktop ka. */}
-          <div className="fixed top-0 left-0 right-0 z-50 w-full bg-black shadow-lg sm:sticky sm:top-14 sm:left-auto sm:right-auto sm:w-auto lg:static lg:z-auto lg:rounded-xl lg:bg-transparent lg:shadow-none">
+          {/* FIX: Gumamit tayo ng w-screen para sigurado talagang sagad sa lapad ng cellphone! */}
+          <div className="fixed top-0 left-0 right-0 z-50 w-screen bg-black shadow-lg sm:sticky sm:top-14 sm:w-full lg:static lg:z-auto lg:rounded-xl lg:bg-transparent lg:shadow-none">
             
+            {/* MINIMIZE BUTTON */}
             <button 
               onClick={() => navigate("/")} 
               className="absolute left-4 top-4 z-[60] flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white transition-colors hover:bg-black/70 sm:hidden"
@@ -48,11 +48,10 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
             <VideoPlayer channel={channel} />
           </div>
           
-          {/* FIX 2: SPACER. Dahil 'fixed' ang video at nakalutang sa ibabaw, kailangan natin maglagay ng blangkong espasyo 
-              para hindi matabunan yung pangalan ng channel at comments. 
-              Ang 56.25vw ay saktong-sakto sa 16:9 ratio height ng video sa mobile! */}
+          {/* SPACER para sa fixed video */}
           <div className="pt-[56.25vw] sm:pt-0"></div>
 
+          {/* Dito natin binalik yung px-4 para sa Channel Info pababa, para may space pa rin sa gilid ang text */}
           <div className="mt-4 px-4 lg:px-0">
             <ChannelInfo channel={channel} />
 
