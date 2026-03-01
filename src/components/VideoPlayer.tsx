@@ -15,18 +15,24 @@ const VideoPlayer = ({ channel }: VideoPlayerProps) => {
   useEffect(() => {
     if (channel.type !== "m3u8" && channel.type !== "mpd") return;
 
+    // FIX 1: I-reset ang error tuwing naglilipat ng channel
+    setError(null);
+
+    let player: any = null;
+    let ui: any = null;
+
     const initPlayer = async () => {
       if (!videoRef.current || !videoContainerRef.current) return;
 
-      const player = new shaka.Player(videoRef.current);
-      const ui = new shaka.ui.Overlay(player, videoContainerRef.current, videoRef.current);
+      player = new shaka.Player(videoRef.current);
+      ui = new shaka.ui.Overlay(player, videoContainerRef.current, videoRef.current);
       
       const config = {
          controlPanelElements: ['play_pause', 'time_and_duration', 'spacer', 'mute', 'volume', 'fullscreen', 'overflow_menu']
       };
       ui.configure(config);
 
-      if (channel.drm) {
+      if (channel.drm && channel.drm.keyId && channel.drm.key) {
         player.configure({
           drm: {
             clearKeys: {
@@ -39,8 +45,11 @@ const VideoPlayer = ({ channel }: VideoPlayerProps) => {
       try {
         await player.load(channel.url);
       } catch (e: any) {
-        console.error("Error loading video", e);
-        setError("Failed to load stream. It might be offline.");
+        // FIX 2: Huwag pansinin ang "Load Interrupted" error (nangyayari ito dahil sa React Strict Mode double-render)
+        if (e.code !== shaka.util.Error.Code.LOAD_INTERRUPTED) {
+          console.error("Error loading video", e);
+          setError("Failed to load stream. It might be offline.");
+        }
       }
     };
 
@@ -51,8 +60,14 @@ const VideoPlayer = ({ channel }: VideoPlayerProps) => {
       setError("Browser not supported for this video.");
     }
 
+    // FIX 3: Proper Cleanup. Kailangang sirain ang lumang player bago gumawa ng bago.
     return () => {
-      // Cleanup
+      if (ui) {
+        ui.destroy();
+      }
+      if (player) {
+        player.destroy();
+      }
     };
   }, [channel]);
 
@@ -74,7 +89,7 @@ const VideoPlayer = ({ channel }: VideoPlayerProps) => {
   return (
     <div ref={videoContainerRef} className="relative w-full aspect-video bg-black overflow-hidden sm:rounded-xl m-0 p-0">
       {error ? (
-        <div className="flex h-full items-center justify-center text-muted-foreground">
+        <div className="flex h-full items-center justify-center text-muted-foreground text-sm p-4 text-center">
           <p>{error}</p>
         </div>
       ) : (
