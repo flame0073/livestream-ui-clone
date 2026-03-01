@@ -30,12 +30,11 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
     <div className={`min-h-[100dvh] w-full pb-20 sm:pt-14 sm:pb-0 bg-background transition-all duration-300 touch-manipulation ${sidebarExpanded ? 'md:pl-60' : 'md:pl-[72px]'}`}>
       <div className="mx-auto flex max-w-[1800px] flex-col lg:flex-row xl:px-12">
         
-        {/* Main content */}
-        {/* Tinanggal natin ang px-4 sa mobile para walang pumigil sa lapad ng video */}
-        <div className="flex-1 min-w-0 lg:max-w-[calc(100%-360px)] xl:max-w-[calc(100%-420px)] lg:px-4 lg:py-6">
+        {/* Main content - Tinanggal natin ang padding sa mobile para sumagad ang video */}
+        <div className="flex-1 min-w-0 px-0 lg:max-w-[calc(100%-360px)] xl:max-w-[calc(100%-420px)] lg:px-4 lg:py-6">
           
-          {/* FIX: Gumamit tayo ng w-screen para sigurado talagang sagad sa lapad ng cellphone! */}
-          <div className="fixed top-0 left-0 right-0 z-50 w-screen bg-black shadow-lg sm:sticky sm:top-14 sm:w-full lg:static lg:z-auto lg:rounded-xl lg:bg-transparent lg:shadow-none">
+          {/* FIX: Gumamit ng 'inset-x-0 w-full' para pilitin sumagad sa magkabilang gilid ng screen */}
+          <div className="fixed inset-x-0 top-0 z-50 w-full bg-black sm:sticky sm:top-14 lg:static lg:z-auto lg:rounded-xl lg:bg-transparent">
             
             {/* MINIMIZE BUTTON */}
             <button 
@@ -51,7 +50,7 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
           {/* SPACER para sa fixed video */}
           <div className="pt-[56.25vw] sm:pt-0"></div>
 
-          {/* Dito natin binalik yung px-4 para sa Channel Info pababa, para may space pa rin sa gilid ang text */}
+          {/* Dito natin binalik yung margin at padding para sa Channel Info pababa */}
           <div className="mt-4 px-4 lg:px-0">
             <ChannelInfo channel={channel} />
 
