@@ -10,7 +10,7 @@ export function useChannels() {
       const { data: rows, error } = await supabase
         .from("channels")
         .select("*")
-        .order("created_at", { ascending: false });
+        .order("name", { ascending: true });
 
       if (error) {
         console.error("Error fetching channels:", error);
@@ -31,16 +31,19 @@ export function useChannels() {
     },
   });
 
-  // Merge: DB channels first, then JSON channels
+  // Merge: DB channels first, then JSON channels as fallback
   const allChannels: Channel[] = [...dbChannels, ...data.channels];
 
   // Deduplicate by name (DB takes priority)
   const seen = new Set<string>();
-  const channels = allChannels.filter((ch) => {
+  const deduped = allChannels.filter((ch) => {
     if (seen.has(ch.name)) return false;
     seen.add(ch.name);
     return true;
   });
+
+  // Sort alphabetically
+  const channels = deduped.sort((a, b) => a.name.localeCompare(b.name));
 
   return { channels, categories: data.categories, isLoading };
 }

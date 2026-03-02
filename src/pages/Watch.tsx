@@ -1,10 +1,12 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { ChevronDown } from "lucide-react";
 import { useChannels } from "@/hooks/useChannels";
+import { useWatchHistory } from "@/hooks/useWatchHistory";
 import VideoPlayer from "@/components/VideoPlayer";
 import ChannelInfo from "@/components/ChannelInfo";
 import CommentSection from "@/components/CommentSection";
 import UpNextSidebar from "@/components/UpNextSidebar";
+import { useEffect } from "react";
 
 interface WatchProps {
   sidebarExpanded: boolean;
@@ -14,10 +16,17 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
   const { channelName } = useParams<{ channelName: string }>();
   const navigate = useNavigate();
   const { channels } = useChannels();
+  const { addToHistory } = useWatchHistory();
   
   const channel = channels.find(
     (ch) => ch.name === decodeURIComponent(channelName || "")
   );
+
+  useEffect(() => {
+    if (channel) {
+      addToHistory(channel.name);
+    }
+  }, [channel?.name, addToHistory]);
 
   if (!channel) {
     return (
@@ -59,10 +68,7 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
         </div>
 
         <div className="w-full shrink-0 px-4 py-6 lg:w-[360px] lg:px-0 xl:w-[400px]">
-          <UpNextSidebar
-            channels={channels}
-            currentChannel={channel.name}
-          />
+          <UpNextSidebar channels={channels} currentChannel={channel.name} />
         </div>
       </div>
     </div>
