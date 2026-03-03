@@ -26,7 +26,7 @@ const ChannelCard = ({ channel }: ChannelCardProps) => {
           <img
             src={channel.logo}
             alt={channel.name}
-            className="h-16 w-16 object-contain opacity-70 transition-transform group-hover:scale-110"
+            className="h-24 w-24 object-contain opacity-70 transition-transform group-hover:scale-110"
             onError={(e) => {
               (e.target as HTMLImageElement).style.display = "none";
             }}

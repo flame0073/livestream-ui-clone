@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Bell, ChevronDown, ThumbsDown, ThumbsUp, Share2, Download, MoreHorizontal } from "lucide-react";
+import { Bell, ChevronDown, ThumbsDown, ThumbsUp, Share2, MoreHorizontal } from "lucide-react";
 
 interface ChannelInfoProps {
   channel: any;
@@ -78,10 +78,6 @@ const ChannelInfo = ({ channel }: ChannelInfoProps) => {
         <button className="flex shrink-0 items-center gap-2 rounded-full bg-accent px-4 py-2 hover:bg-yt-hover">
           <Share2 className="h-5 w-5" />
           <span className="text-sm font-medium">Share</span>
-        </button>
-        <button className="hidden shrink-0 items-center gap-2 rounded-full bg-accent px-4 py-2 hover:bg-yt-hover md:flex">
-          <Download className="h-5 w-5" />
-          <span className="text-sm font-medium">Download</span>
         </button>
         <button className="flex shrink-0 items-center rounded-full bg-accent p-2 hover:bg-yt-hover">
           <MoreHorizontal className="h-5 w-5" />

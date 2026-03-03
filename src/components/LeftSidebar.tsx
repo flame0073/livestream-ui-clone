@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 interface LeftSidebarProps {
   expanded: boolean;
+  isAdmin?: boolean;
 }
 
 const mainItems = [
@@ -25,7 +26,7 @@ const exploreItems = [
   { icon: Trophy, label: "Sports", path: "#" },
 ];
 
-const LeftSidebar = ({ expanded }: LeftSidebarProps) => {
+const LeftSidebar = ({ expanded, isAdmin }: LeftSidebarProps) => {
   const location = useLocation();
 
   if (!expanded) {
@@ -86,14 +87,17 @@ const LeftSidebar = ({ expanded }: LeftSidebarProps) => {
         ))}
       </div>
 
-      <div className="mx-3 my-2 border-t border-border" />
-
-      <div className="px-3 py-1">
-        <Link to="/admin" className="flex items-center gap-5 rounded-lg px-3 py-2 text-sm hover:bg-accent">
-          <Settings className="h-5 w-5" />
-          <span>Admin</span>
-        </Link>
-      </div>
+      {isAdmin && (
+        <>
+          <div className="mx-3 my-2 border-t border-border" />
+          <div className="px-3 py-1">
+            <Link to="/admin" className="flex items-center gap-5 rounded-lg px-3 py-2 text-sm hover:bg-accent">
+              <Settings className="h-5 w-5" />
+              <span>Admin</span>
+            </Link>
+          </div>
+        </>
+      )}
     </aside>
   );
 };
