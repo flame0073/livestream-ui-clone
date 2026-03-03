@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Menu, Search, Bell, User, Mic, ArrowLeft, Sun, Moon } from "lucide-react";
+import { Menu, Search, Bell, Mic, ArrowLeft, Sun, Moon, LogIn, LogOut } from "lucide-react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
+import type { User } from "@supabase/supabase-js";
 
 interface NavbarProps {
   onToggleSidebar: () => void;
@@ -8,9 +9,11 @@ interface NavbarProps {
   setSearchQuery: (query: string) => void;
   theme: "dark" | "light";
   onToggleTheme: () => void;
+  user: User | null;
+  onSignOut: () => void;
 }
 
-const Navbar = ({ onToggleSidebar, searchQuery, setSearchQuery, theme, onToggleTheme }: NavbarProps) => {
+const Navbar = ({ onToggleSidebar, searchQuery, setSearchQuery, theme, onToggleTheme, user, onSignOut }: NavbarProps) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [showMobileSearch, setShowMobileSearch] = useState(false);
@@ -78,9 +81,16 @@ const Navbar = ({ onToggleSidebar, searchQuery, setSearchQuery, theme, onToggleT
         <button className="shrink-0 rounded-full p-2 hover:bg-accent">
           <Bell className="h-5 w-5" />
         </button>
-        <button className="ml-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-accent">
-          <User className="h-5 w-5" />
-        </button>
+        {user ? (
+          <button onClick={onSignOut} className="ml-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-bold" title="Sign out">
+            {user.email?.[0]?.toUpperCase() || "U"}
+          </button>
+        ) : (
+          <Link to="/auth" className="ml-1 flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-sm font-medium text-primary hover:bg-accent">
+            <LogIn className="h-4 w-4" />
+            <span className="hidden sm:inline">Sign in</span>
+          </Link>
+        )}
       </div>
     </header>
   );

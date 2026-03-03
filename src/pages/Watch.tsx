@@ -63,7 +63,7 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
                 Welcome to {channel.name} live stream. Enjoy high-quality content 24/7.
               </p>
             </div>
-            <CommentSection />
+            <CommentSection channelName={channel.name} />
           </div>
         </div>
 
