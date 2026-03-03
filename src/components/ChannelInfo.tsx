@@ -75,7 +75,18 @@ const ChannelInfo = ({ channel }: ChannelInfoProps) => {
             <ThumbsDown className="h-5 w-5" />
           </button>
         </div>
-        <button className="flex shrink-0 items-center gap-2 rounded-full bg-accent px-4 py-2 hover:bg-yt-hover">
+        <button 
+          onClick={async () => {
+            const url = window.location.href;
+            if (navigator.share) {
+              try { await navigator.share({ title: channel.name, url }); } catch {}
+            } else {
+              await navigator.clipboard.writeText(url);
+              alert("Link copied to clipboard!");
+            }
+          }}
+          className="flex shrink-0 items-center gap-2 rounded-full bg-accent px-4 py-2 hover:bg-yt-hover"
+        >
           <Share2 className="h-5 w-5" />
           <span className="text-sm font-medium">Share</span>
         </button>

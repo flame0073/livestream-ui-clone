@@ -102,17 +102,16 @@ const VideoPlayer = ({ channel }: VideoPlayerProps) => {
 
   return (
     <div ref={videoContainerRef} className="relative w-full aspect-video bg-black overflow-hidden sm:rounded-xl m-0 p-0">
-      {error ? (
-        <div className="flex h-full items-center justify-center text-muted-foreground text-sm p-4 text-center">
+      {error && (
+        <div className="absolute inset-0 z-10 flex h-full items-center justify-center text-muted-foreground text-sm p-4 text-center bg-black">
           <p>{error}</p>
         </div>
-      ) : (
-        <video
-          ref={videoRef}
-          autoPlay
-          className="h-full w-full object-contain"
-        />
       )}
+      <video
+        ref={videoRef}
+        autoPlay
+        className="h-full w-full object-contain"
+      />
     </div>
   );
 };
