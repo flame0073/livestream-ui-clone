@@ -43,7 +43,7 @@ const AppContent = () => {
         <Route path="/watch/:channelName" element={<Watch sidebarExpanded={sidebarExpanded} />} />
         <Route path="/subscriptions" element={<Subscriptions sidebarExpanded={sidebarExpanded} />} />
         <Route path="/history" element={<History sidebarExpanded={sidebarExpanded} />} />
-        <Route path="/admin" element={isAdmin ? <Admin sidebarExpanded={sidebarExpanded} /> : <Navigate to="/" />} />
+        <Route path="/admin" element={loading ? null : isAdmin ? <Admin sidebarExpanded={sidebarExpanded} /> : <Navigate to="/" />} />
         <Route path="/auth" element={user ? <Navigate to="/" /> : <Auth sidebarExpanded={sidebarExpanded} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
