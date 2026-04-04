@@ -54,15 +54,6 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
 
           <div className="mt-4 px-4 lg:px-0">
             <ChannelInfo channel={channel} />
-            <div className="mt-4 rounded-xl bg-accent p-3">
-              <div className="flex gap-2 text-sm">
-                <span className="font-medium">{channel.views || "10K watching"}</span>
-                <span className="text-muted-foreground">Started streaming recently</span>
-              </div>
-              <p className="mt-1 text-sm">
-                Welcome to {channel.name} live stream. Enjoy high-quality content 24/7.
-              </p>
-            </div>
             
           </div>
         </div>
