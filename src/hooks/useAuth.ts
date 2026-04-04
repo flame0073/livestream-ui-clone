@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import type { User } from "@supabase/supabase-js";
+import type { Session, User } from "@supabase/supabase-js";
 
 export const useAuth = () => {
   const [user, setUser] = useState<User | null>(null);
@@ -8,48 +8,54 @@ export const useAuth = () => {
   const [loading, setLoading] = useState(true);
 
   const checkAdminRole = async (userId: string) => {
-    const { data } = await supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", userId)
-      .eq("role", "admin")
-      .maybeSingle();
+    const { data, error } = await supabase.rpc("has_role", {
+      _user_id: userId,
+      _role: "admin",
+    });
+
+    if (error) {
+      console.error("Failed to check admin role", error);
+      return false;
+    }
+
     return !!data;
   };
 
   useEffect(() => {
     let mounted = true;
+    let requestId = 0;
 
-    // First, get the current session
-    const initAuth = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
-      if (!mounted) return;
-
+    const syncAuthState = async (session: Session | null) => {
+      const currentRequestId = ++requestId;
       const currentUser = session?.user ?? null;
+
+      if (!mounted) return;
       setUser(currentUser);
 
-      if (currentUser) {
-        const admin = await checkAdminRole(currentUser.id);
-        if (mounted) setIsAdmin(admin);
+      if (!currentUser) {
+        if (currentRequestId === requestId) {
+          setIsAdmin(false);
+          setLoading(false);
+        }
+        return;
       }
-      if (mounted) setLoading(false);
+
+      const admin = await checkAdminRole(currentUser.id);
+
+      if (!mounted || currentRequestId !== requestId) return;
+
+      setIsAdmin(admin);
+      setLoading(false);
     };
 
-    initAuth();
-
-    // Then listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(async (_event, session) => {
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       if (!mounted) return;
-      const currentUser = session?.user ?? null;
-      setUser(currentUser);
+      setLoading(true);
+      void syncAuthState(session);
+    });
 
-      if (currentUser) {
-        const admin = await checkAdminRole(currentUser.id);
-        if (mounted) setIsAdmin(admin);
-      } else {
-        setIsAdmin(false);
-      }
-      if (mounted) setLoading(false);
+    void supabase.auth.getSession().then(({ data: { session } }) => {
+      void syncAuthState(session);
     });
 
     return () => {
