@@ -4,7 +4,7 @@ import { useChannels } from "@/hooks/useChannels";
 import { useWatchHistory } from "@/hooks/useWatchHistory";
 import VideoPlayer from "@/components/VideoPlayer";
 import ChannelInfo from "@/components/ChannelInfo";
-import CommentSection from "@/components/CommentSection";
+
 import UpNextSidebar from "@/components/UpNextSidebar";
 import { useEffect } from "react";
 
@@ -63,7 +63,7 @@ const Watch = ({ sidebarExpanded }: WatchProps) => {
                 Welcome to {channel.name} live stream. Enjoy high-quality content 24/7.
               </p>
             </div>
-            <CommentSection channelName={channel.name} />
+            
           </div>
         </div>
 
